@@ -23,7 +23,7 @@ const MeditationContainer = () => {
             <>
             <Switch>
 
-            <Route path="meditation/start" render={ () => {
+            <Route path="/meditation/start" render={ () => {
                 return <MeditationDisplay length={timer} audio={audio}/>
             }}/>
 
