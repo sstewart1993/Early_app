@@ -1,5 +1,6 @@
 import React, {useState,useEffect} from "react";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import DiaryDisplay from "../components/Diary/DiaryDisplay";
 import Request from "../helpers/request";
 
 const DiaryContainer = () => {
@@ -48,7 +49,7 @@ const DiaryContainer = () => {
                 {/* default view */}
                 <Route render={ () => {
                     // return <CalendarView />
-                    return <p>CalendarView goes here</p>
+                    return <DiaryDisplay/>
                 }} />
 
             </Switch>
