@@ -15,7 +15,7 @@ public class Diary {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @JsonIgnoreProperties({"diary"})
+    @JsonIgnoreProperties({"diary"})
     @OneToMany(mappedBy = "diary")
     private List<Entry> entries;
 

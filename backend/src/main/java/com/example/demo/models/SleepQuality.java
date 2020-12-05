@@ -18,4 +18,6 @@ public enum SleepQuality {
     public int getQuality() {
         return quality;
     }
+
+
 }

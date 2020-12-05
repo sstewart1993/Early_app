@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -16,7 +17,7 @@ public class Entry {
     private Long id;
 
     @Column(name="date")
-    private Date date;
+    private LocalDate date;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="sleep_id", referencedColumnName = "id")
@@ -31,13 +32,14 @@ public class Entry {
 
     @ManyToOne
     @JoinColumn(name="diary_id", nullable = false)
+    @JsonIgnoreProperties({"entry"})
     private Diary diary;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="meditation_id", referencedColumnName = "id")
     private Meditation meditation;
 
-    public Entry(Date date, Sleep sleep, Mood mood, String prompt, Meditation meditation, Diary diary) {
+    public Entry(LocalDate date, Sleep sleep, Mood mood, String prompt, Meditation meditation, Diary diary) {
         this.date = date;
         this.sleep = sleep;
         this.mood = mood;
@@ -65,11 +67,11 @@ public class Entry {
         this.id = id;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
