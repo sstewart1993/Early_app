@@ -21,10 +21,12 @@ public class Entry {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="sleep_id", referencedColumnName = "id")
+    @JsonIgnoreProperties({"entry"})
     private Sleep sleep;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "mood_id", referencedColumnName = "id")
+    @JsonIgnoreProperties({"entry"})
     private Mood mood;
 
     @Column(name="prompt")
@@ -32,11 +34,12 @@ public class Entry {
 
     @ManyToOne
     @JoinColumn(name="diary_id", nullable = false)
-    @JsonIgnoreProperties({"entry"})
+    @JsonIgnoreProperties({"entries"})
     private Diary diary;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="meditation_id", referencedColumnName = "id")
+    @JsonIgnoreProperties({"entry"})
     private Meditation meditation;
 
     public Entry(LocalDate date, Sleep sleep, Mood mood, String prompt, Meditation meditation, Diary diary) {

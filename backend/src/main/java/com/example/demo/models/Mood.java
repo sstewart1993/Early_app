@@ -28,7 +28,7 @@ public class Mood {
     @Column(name = "bodyreason")
     private ArrayList<Reason> bodyReason;
 
-    @JsonIgnoreProperties({"mood"})
+    @JsonIgnoreProperties({"entry"})
     @OneToOne(mappedBy = "mood")
     private Entry entry;
 

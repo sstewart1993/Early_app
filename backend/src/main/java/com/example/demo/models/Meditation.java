@@ -19,7 +19,7 @@ public class Meditation {
     @Column(name="completed")
     private boolean completed;
 
-    @JsonIgnoreProperties({"meditation"})
+//    @JsonIgnoreProperties({"entry" })
     @OneToOne(mappedBy = "meditation")
     private Entry entry;
 

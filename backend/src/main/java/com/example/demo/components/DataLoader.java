@@ -29,13 +29,22 @@ public class DataLoader implements ApplicationRunner {
         diaryRepository.save(testDiary);
 
         LocalDate today = LocalDate.now();
+        LocalDate yesterday = LocalDate.of(2020, 12, 04);
         SleepQuality wokeOnce = SleepQuality.WokeOnce;
+        SleepQuality poor = SleepQuality.Bad;
+        Sleep secondSleep = new Sleep(4.0, poor);
         Sleep firstSleep = new Sleep(8.0, wokeOnce);
         Mood happy = new Mood(8.0, 9.0);
+        Mood unhappy = new Mood(4.0, 3.0);
+        Meditation noMeditation = new Meditation(0, false);
         Meditation littleMeditation = new Meditation(5, true);
 
         Entry firstEntry = new Entry(today, firstSleep, happy, "I've woken up feeling great", littleMeditation, testDiary);
         entryRepository.save(firstEntry);
+
+        Entry yesterdayEntry = new Entry(yesterday, secondSleep, unhappy, "I do not feel great today", noMeditation, testDiary);
+        entryRepository.save(yesterdayEntry);
+        testDiary.addEntry(yesterdayEntry);
     }
 
 }
