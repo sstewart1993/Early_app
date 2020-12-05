@@ -1,5 +1,8 @@
 package com.example.demo.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.example.demo.models.Reason;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,18 +23,19 @@ public class Mood {
     private Double bodyScore;
 
     @Column(name="mindreason")
-    private List<Reason> mindReason;
+    private ArrayList<Reason> mindReason;
 
     @Column(name = "bodyreason")
-    private List<Reason> bodyReason;
+    private ArrayList<Reason> bodyReason;
 
-    @OneToOne(mappedBy = "moods")
+    @JsonIgnoreProperties({"mood"})
+    @OneToOne(mappedBy = "mood")
     private Entry entry;
 
-    public Mood(Double mindScore, Double bodyScore, Entry entry) {
+    public Mood(Double mindScore, Double bodyScore) {
         this.mindScore = mindScore;
         this.bodyScore = bodyScore;
-        this.entry = entry;
+        this.entry = null;
         this.bodyReason = new ArrayList<Reason>();
         this.mindReason = new ArrayList<Reason>();
     }
@@ -74,7 +78,7 @@ public class Mood {
         return mindReason;
     }
 
-    public void setMindReason(List<Reason> mindReason) {
+    public void setMindReason(ArrayList<Reason> mindReason) {
         this.mindReason = mindReason;
     }
 
@@ -82,7 +86,7 @@ public class Mood {
         return bodyReason;
     }
 
-    public void setBodyReason(List<Reason> bodyReason) {
+    public void setBodyReason(ArrayList<Reason> bodyReason) {
         this.bodyReason = bodyReason;
     }
 

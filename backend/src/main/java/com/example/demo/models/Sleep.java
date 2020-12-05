@@ -1,5 +1,7 @@
 package com.example.demo.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity
@@ -21,15 +23,17 @@ public class Sleep {
     @Column(name = "dream")
     private String dream;
 
-    @OneToOne(mappedBy = "sleeps")
+    @JsonIgnoreProperties({"sleep"})
+    @OneToOne(mappedBy = "sleep")
     private Entry entry;
 
-    public Sleep(Double hours, SleepQuality sleepQuality, Entry entry) {
+    public Sleep(Double hours, SleepQuality sleepQuality) {
         this.hours = hours;
         this.sleepQuality = sleepQuality;
         this.dream = "";
-        this.entry = entry;
+        this.entry = null;
     }
+
 
     public Long getId() {
         return id;

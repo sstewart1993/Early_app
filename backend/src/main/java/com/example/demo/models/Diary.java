@@ -15,13 +15,15 @@ public class Diary {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonIgnoreProperties({"diary"})
+//    @JsonIgnoreProperties({"diary"})
     @OneToMany(mappedBy = "diary")
     private List<Entry> entries;
 
     public Diary() {
         this.entries = new ArrayList<>();
     }
+
+
 
     public List<Entry> getEntries() {
         return entries;
@@ -34,6 +36,7 @@ public class Diary {
     public void addEntry(Entry entry){
         entries.add(entry);
     }
+
 
     public Long getId() {
         return id;

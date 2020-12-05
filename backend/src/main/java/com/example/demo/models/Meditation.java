@@ -1,5 +1,7 @@
 package com.example.demo.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity
@@ -17,13 +19,14 @@ public class Meditation {
     @Column(name="completed")
     private boolean completed;
 
-    @OneToOne(mappedBy = "meditations")
+    @JsonIgnoreProperties({"meditation"})
+    @OneToOne(mappedBy = "meditation")
     private Entry entry;
 
-    public Meditation(int length, boolean completed, Entry entry) {
+    public Meditation(int length, boolean completed) {
         this.length = length;
         this.completed = completed;
-        this.entry = entry;
+        this.entry = null;
     }
 
     public Long getId() {

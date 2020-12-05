@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class DiaryController {
 
@@ -15,7 +17,7 @@ public class DiaryController {
     DiaryRepository diaryRepository;
 
     @GetMapping(value = "/diary")
-    public ResponseEntity<Diary> getDiary(){
+    public ResponseEntity<List<Diary>> getDiary(){
         return new ResponseEntity<>(diaryRepository.findAll(), HttpStatus.OK);
     }
 }
