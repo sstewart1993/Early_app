@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from "react";
 
+// COMMENT COMMENT COMMENT
+
 const EntryForm = () => {
 
     const[entry, setEntry] = useState(
