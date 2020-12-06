@@ -4,6 +4,8 @@ import Request from "../helpers/request";
 
 const EntryContainer = () => {
 
+
+
     const handlePost = function(entry) {
         const request = new Request();
         console.log(entry);

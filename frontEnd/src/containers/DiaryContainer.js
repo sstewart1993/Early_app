@@ -49,7 +49,7 @@ const DiaryContainer = () => {
                 {/* default view */}
                 <Route render={ () => {
                     // return <CalendarView />
-                    return <DiaryDisplay/>
+                    return <DiaryDisplay classname="diary-display"/>
                 }} />
 
             </Switch>

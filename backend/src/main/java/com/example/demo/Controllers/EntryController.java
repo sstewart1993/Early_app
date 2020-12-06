@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -23,6 +24,11 @@ public class EntryController {
     @GetMapping(value = "/entries/{id}")
     public ResponseEntity getEntry(@PathVariable Long id){
         return new ResponseEntity<>(entryRepository.findById(id), HttpStatus.OK);
+    }
+
+    @GetMapping(value="entries/date/{date}")
+    public ResponseEntity<List<Entry>> getEntryByDate(@PathVariable LocalDate date){
+        return new ResponseEntity<>(entryRepository.findAllByDate(date),HttpStatus.OK);
     }
 
     @PostMapping(value = "/entries")
