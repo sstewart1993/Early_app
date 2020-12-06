@@ -28,6 +28,11 @@ const DiaryContainer = () => {
         })
     }
 
+    const handleEntryClick = function(id){
+        const url = "/entries/" + id;
+
+    }
+
     return(
         // <p>I am the Diary container. I AM THE MASTER!</p>
         // // search bar
@@ -42,14 +47,12 @@ const DiaryContainer = () => {
                 <Route exact path="/diary/:id" render={ (props) => {
                     const id = props.match.params.id;
                     const entry = findEntryById(id);
-                    // return <EntryDetail entry={entry} />
-                    return <p>EntryDetail goes here</p>
-                }} />
+                 }} />
 
                 {/* default view */}
                 <Route render={ () => {
                     // return <CalendarView />
-                    return <DiaryDisplay diary={diary}/>
+                    return <DiaryDisplay diary={diary} handleEntryClick={handleEntryClick}/>
                 }} />
 
             </Switch>
