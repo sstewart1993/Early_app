@@ -1,14 +1,10 @@
 import React, {useState, useEffect} from "react";
 
-<<<<<<< HEAD
-const EntryForm = () => {
-=======
 // COMMENT COMMENT COMMENT
 
 const EntryForm = ({onCreate}) => {
 
 
->>>>>>> c1ec18fdd4f946f05385b5d23c05c86a9448e38d
 
     const[entry, setEntry] = useState(
         {
