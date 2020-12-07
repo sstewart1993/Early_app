@@ -1,0 +1,45 @@
+.entry-form {
+    width: auto;
+    padding: 20px;
+    background-color: #B43C42;
+    min-height: 150px;
+    border-radius: 20px;
+}
+
+.question-set {
+    margin: 20px;
+    padding: 25px;
+}
+
+.reason-checkboxes {
+    display: grid;
+    grid-template-columns: 0 1fr 0 1fr 0 1fr;
+}
+
+input,select,button,textarea {
+    font-family: "Quicksand",sans-serif;
+    background-color: transparent;
+    color: white;
+    font-size: 20px;
+    padding: 3px;
+    margin: 5px;
+    border: 1px solid white;
+    border-radius: 3px;
+}
+
+.reason-checkboxes > input {
+    visibility: hidden;
+}
+
+.reason-checkboxes > label {
+    cursor: pointer;
+    margin: 4px;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+:checked + label {
+    padding: 4px;
+    background-color: #b32c30;
+    border: 1px solid #F1D5F1;
+}

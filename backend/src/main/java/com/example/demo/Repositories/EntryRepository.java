@@ -13,5 +13,6 @@ public interface EntryRepository extends JpaRepository<Entry, Long> {
     List<Entry> findBySleepId(Long id);
     List<Entry> findByMeditationId(Long id);
     List<Entry> findByMoodId(Long id);
+    List<Entry> findAllByDate(LocalDate date);
 
 }
