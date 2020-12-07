@@ -1,10 +1,10 @@
 {
-
   "name": "mindfullness",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@fullcalendar/daygrid": "^5.4.0",
+    "@fullcalendar/interaction": "^5.4.0",
     "@fullcalendar/react": "^5.4.0",
     "@remobile/react-native-zip": "^1.0.5",
     "@testing-library/jest-dom": "^5.11.6",
@@ -47,5 +47,4 @@
     ]
   },
   "proxy": "http://localhost:8080/"
-
 }

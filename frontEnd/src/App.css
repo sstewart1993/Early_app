@@ -4,7 +4,7 @@
 }
 
 h1 {
-    font-family: "Lora",serif;
+    font-family: "Lora", serif;
     font-style: italic;
     font-size: 3.5rem;
 }
@@ -16,11 +16,11 @@ h1 {
     min-height: 150px;
 }
 
-.nav-bar > ul {
+.nav-bar>ul {
     display: flex;
 }
 
-.nav-bar-links{
+.nav-bar-links {
     justify-self: flex-end;
     justify-content: center;
 }
@@ -30,27 +30,22 @@ h1 {
     margin: 20px;
     display: grid;
     place-content: center;
-    
 }
 
-.nav-link > a {
+.nav-link>a {
     text-decoration: none;
     color: #F2ECF9;
 }
 
 .main-content {
-
     background-color: #C34B4F;
     display: grid;
     place-content: center;
     margin: auto;
-
     position: absolute;
-
-    top:150px;
-    right:0;
-    left:0;
+    top: 150px;
+    right: 0;
+    left: 0;
     bottom: 0;
-
-    z-index: -1;
+    /* z-index: -1; */
 }

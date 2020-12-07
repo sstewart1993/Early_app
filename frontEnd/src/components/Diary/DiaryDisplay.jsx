@@ -21,6 +21,7 @@ const DiaryDisplay = ({diary, handleEntryClick}) => {
     })}
 
     const handleEventClick = function(eventClickInfo){
+      console.log(eventClickInfo)
       handleEntryClick(eventClickInfo)
     }
   

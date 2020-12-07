@@ -20,17 +20,17 @@ const EntryDetail =  ({entry}) => {
     let sleepQuality = ""
 
 
-    if(entry.sleep.sleepQuality  == "Restful") {
+    if(entry.sleep.sleepQuality  === "Restful") {
         sleepQuality = "got a restful sleep."
-    } else if(entry.sleep.sleepQuality  == "WokeOnce" ) {
+    } else if(entry.sleep.sleepQuality  === "WokeOnce" ) {
         sleepQuality = "woke once during the night." 
-    } else if (entry.sleep.sleepQuality == "WokeTwice") {
+    } else if (entry.sleep.sleepQuality === "WokeTwice") {
         sleepQuality = "woke twice during the night."
-    } else if (entry.sleep.sleepQuality == "Restless") {
+    } else if (entry.sleep.sleepQuality === "Restless") {
         sleepQuality = "had a pretty restless night."
-    } else if (entry.sleep.sleepQuality == "Bad") {
+    } else if (entry.sleep.sleepQuality === "Bad") {
         sleepQuality = "had a particularly bad night."
-    } else if (entry.sleep.sleepQuality == "No") {
+    } else if (entry.sleep.sleepQuality === "No") {
         sleepQuality = "did not sleep a wink!"
     }
     

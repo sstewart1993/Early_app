@@ -35,7 +35,7 @@ const DiaryContainer = () => {
 
     const handleEntryClick = function(info){
         let id = info.event._def.extendedProps.id;
-        const url = "/entries/" + id;
+        // const url = "/entries/" + id;
         const request = new Request();
         request.patch("/api/entries/" + id, info.event._def.extendedProps)
         .then(() => {window.location='/diary/' + id})
