@@ -15,7 +15,6 @@ const DiaryDisplay = ({diary, handleEntryClick}) => {
         date: entry.date.toString(),
         id: entry.id, 
         allDay: true,
-        url: "/entries/" + entry.id,
         extendedProps: {...entry}
       }
         
@@ -23,10 +22,11 @@ const DiaryDisplay = ({diary, handleEntryClick}) => {
     })}
 
     const handleEventClick = function(eventClickInfo){
-      return(
-        <EntryDetail event={eventClickInfo.extendedProps} />
-      )
-      }
+      console.log("event CLICKED. Event ID" + eventClickInfo)
+      handleEntryClick(eventClickInfo)
+    }
+  
+      
     
   return(  <FullCalendar className ="Full-Calendar"
     plugins={[ dayGridPlugin, interactionPlugin ]}

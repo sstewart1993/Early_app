@@ -2,6 +2,8 @@ import React, {useState,useEffect} from "react";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import DiaryDisplay from "../components/Diary/DiaryDisplay";
 import Request from "../helpers/request";
+import EntryDetail from "../components/Entry/EntryDetail"
+
 
 const DiaryContainer = () => {
 
@@ -28,10 +30,18 @@ const DiaryContainer = () => {
         })
     }
 
-    const handleEntryClick = function(id){
+    const handleEntryClick = function(info){
+        console.log(info)
+        let id = info.event._def.extendedProps.id;
+        console.log("first ID is" + id)
         const url = "/entries/" + id;
+        const request = new Request();
+        request.patch("/api/entries/" + id, info.event._def.extendedProps)
+        .then(() => {window.location='/diary/' + id})
 
     }
+
+
 
     return(
         // <p>I am the Diary container. I AM THE MASTER!</p>
@@ -46,7 +56,10 @@ const DiaryContainer = () => {
 
                 <Route exact path="/diary/:id" render={ (props) => {
                     const id = props.match.params.id;
+                    console.log(props.match.params);
                     const entry = findEntryById(id);
+                    console.log("route entry is" + entry)
+                    return <EntryDetail entry={entry}/>
                  }} />
 
                 {/* default view */}
