@@ -1,13 +1,53 @@
+import { useEffect, useState } from "react";
 import React from "react";
 
 
 const EntryDetail =  ({entry}) => {
+
+    const [stateEntry, setStateEntry] = useState({
+        
+            id: null,
+            date: "",
+            sleep: {
+            id: null,
+            hours: null,
+            sleepQuality: "",
+            dream: ""
+            },
+            mood: {
+            id: null,
+            mindScore: null,
+            bodyScore: null,
+            mindReason: [ ],
+            bodyReason: []
+            },
+            prompt: "",
+            meditation: {
+            id: null,
+            length: null,
+            completed: false
+            }
+            
+    })
+
+    useEffect(() => {
+        if(entry){
+            let currentEntry = {...entry}
+            setStateEntry(currentEntry)
+        }
+    }, [entry])
 
     if(!entry){
         return (
             <p>Loading...</p>
         )
     }
+
+    const handleChange = function(event){
+        let propertyName = event.target.name;
+        let copiedEntry = {...stateEntry}
+        copiedEntry[propertyName] = event.target.value;
+        setStateEntry(copiedEntry)}
 
     let meditation = ""
 
@@ -40,15 +80,28 @@ const EntryDetail =  ({entry}) => {
 
         <form onSubmit="" className = "entryDetail">
             <label for="prompt">Prompt: </label>
-            <input type="text" name="prompt" placeholder={entry.prompt}></input>
+            <input type="text" name="prompt" value={entry.prompt} placeholder={entry.prompt} onChange={handleChange}></input>
            
-           <h2>Sleep Info</h2>
-           <label for="dream">Dream Diary:</label>
-           <input type="text" name="dream-diary" placeholder={entry.sleep.dream}></input>
-           <label for="sleephours">Hours of Sleep: </label>
-           <input type="number" name="sleep-hours" placeholder={entry.sleep.hours}></input>
+            <h2>Sleep Info</h2>
+            <label for="dream">Dream Diary:</label>
+            <input type="text" name="dream-diary" value={entry.sleep.dream} placeholder={entry.sleep.dream} onChange={handleChange}></input>
+            <label for="sleephours">Hours of Sleep: </label>
+            <input type="number" name="sleep-hours" value={entry.sleep.hours} placeholder={entry.sleep.hours} onChange={handleChange}></input>
+            <label>Sleep Quality:</label>
+            <select select name="sleepQuality" defaultValue={entry.sleep.sleepQuality} onChange={handleChange}>
+                <option value="Restful">Very Restful</option>
+                <option value="WokeOnce">I woke up once</option>
+                <option value="WokeTwice">I woke up twice</option>
+                <option value="Restless">I was pretty restless</option>
+                <option value="Bad">I had a bad night's sleep</option>
+                <option value="No">I didn't sleep at all</option>
+            </select>
 
-        
+            <h2>Mood Info</h2>
+            <label></label>
+            <input></input>
+
+            <button type="submit"> Submit </button>
         <p>On this day you got {entry.sleep.hours} hours of sleep and you {sleepQuality}. </p>
         <p>{meditation}</p>
         </form>

@@ -1,0 +1,30 @@
+.fc .fc-button-primary {
+    margin-left: 10px;
+    background-color: #CDD3CE;
+    border-color: white;
+}
+
+.fc .fc-button-primary:disabled {
+    background-color: #CDD3CE;
+    border-color: white;
+    color: white;
+    opacity: 100;
+}
+
+.fc .fc-toolbar-title {
+    font-size: 1.75em;
+    margin: 0;
+    font-family: "Lora", serif;
+}
+
+button {
+    background-color: #CDD3CE
+}
+
+.fc .fc-scroller-liquid-absolute {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
