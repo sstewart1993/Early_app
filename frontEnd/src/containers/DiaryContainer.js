@@ -8,14 +8,17 @@ import EntryDetail from "../components/Entry/EntryDetail"
 const DiaryContainer = () => {
 
     const[diary, setDiary] = useState([]);
+    const[entry, setEntry] = useState([]);
 
     const requestAll = function(){
         const request = new Request();
         const diaryPromise = request.get("/diary");
+        const entryPromise = request.get("/entries");
 
-        Promise.all([diaryPromise])
+        Promise.all([diaryPromise, entryPromise])
         .then((data)=> {
             setDiary(data[0]);
+            setEntry(data[1]);
         })
     }
     
@@ -25,15 +28,13 @@ const DiaryContainer = () => {
 
 
     const findEntryById = function(id) {
-        return diary.find((entry) => {
-            return entry.id === parseInt(id);
+        return entry.find((entrySearch) => {
+            return entrySearch.id === parseInt(id);
         })
     }
 
     const handleEntryClick = function(info){
-        console.log(info)
         let id = info.event._def.extendedProps.id;
-        console.log("first ID is" + id)
         const url = "/entries/" + id;
         const request = new Request();
         request.patch("/api/entries/" + id, info.event._def.extendedProps)
@@ -56,9 +57,7 @@ const DiaryContainer = () => {
 
                 <Route exact path="/diary/:id" render={ (props) => {
                     const id = props.match.params.id;
-                    console.log(props.match.params);
                     const entry = findEntryById(id);
-                    console.log("route entry is" + entry)
                     return <EntryDetail entry={entry}/>
                  }} />
 
