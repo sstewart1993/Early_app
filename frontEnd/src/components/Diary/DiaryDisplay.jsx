@@ -1,6 +1,5 @@
 import React from 'react'
 import FullCalendar from '@fullcalendar/react'
-import {Calendar} from '@fullcalendar/core'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import EntryDetail from "../Entry/EntryDetail"
@@ -22,7 +21,6 @@ const DiaryDisplay = ({diary, handleEntryClick}) => {
     })}
 
     const handleEventClick = function(eventClickInfo){
-      console.log("event CLICKED. Event ID" + eventClickInfo)
       handleEntryClick(eventClickInfo)
     }
   
