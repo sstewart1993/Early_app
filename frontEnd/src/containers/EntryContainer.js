@@ -2,9 +2,11 @@ import React from "react";
 import EntryForm from "../components/Entry/EntryForm";
 import Request from "../helpers/request";
 
-const EntryContainer = () => {
+const EntryContainer = ({todayState}) => {
 
-
+    if(todayState.length > 0){
+        return <h2>you have already made an entry for today</h2>
+    }
 
     const handlePost = function(entry) {
         const request = new Request();
@@ -13,6 +15,7 @@ const EntryContainer = () => {
         .then( () => {window.location = "/meditation"});
     }
 
+ 
     return(  
         <EntryForm onCreate={handlePost}/>
 
