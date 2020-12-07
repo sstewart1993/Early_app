@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react";
 import "./EntryForm.css";
 
-// COMMENT COMMENT COMMENT
 
 const EntryForm = ({onCreate}) => {
 
