@@ -1,0 +1,132 @@
+/* .timer{
+    align-items: center;
+    z-index: 1;
+
+} */
+
+body{
+
+}
+
+.ball{
+    animation: ball 5000ms infinite linear alternate;
+    height:300px;
+    width:300px;
+    align-items: center;
+    z-index: 0;
+    border-radius: 100%;
+    position: absolute;
+    opacity: 0.5;
+}
+
+.breath{
+    animation: in 10000ms infinite linear alternate;
+    /* position: absolute; */
+    text-align: center;
+    
+}
+
+#in{
+    animation-delay: 5000ms;
+}
+
+/* @keyframes in {
+    0%{
+        opacity: 1;
+        font-size: 100%;
+    }
+    25%{
+        opacity: 0.25;
+        font-size: 50%;
+    }
+    50%{
+        opacity: 0;
+        font-size: 0%;
+    }
+    75%{
+        opacity: 0.25;
+        font-size: 50%;
+    }
+    100%{
+        opacity: 1;
+        font-size: 100%;
+    }
+}
+
+
+@keyframes ball{
+    from {
+        height:300px;
+    width:300px;
+}
+    to {
+        width:500px;
+        height:500px;
+    }
+} */
+
+.ball1{
+    animation: ball 5000ms infinite linear alternate;
+    animation-delay: 500ms;
+    height:300px;
+    width:300px;
+    align-items: center;
+    z-index: 1;
+    border-radius: 100%;
+    position: absolute;
+    opacity: 0.7;}
+
+.ball2{
+    animation: ball 5000ms infinite linear alternate;
+    animation-delay: 1000ms;
+    height:300px;
+    width:300px;
+    align-items: center;
+    z-index: 2;
+    border-radius: 150px;
+    position: absolute;
+    opacity: 0.7;}
+
+.ball3{
+    animation: ball 5000ms infinite linear alternate;
+    animation-delay: 1500ms;
+    height:300px;
+    width:300px;
+    align-items: center;
+    z-index: 3;
+    border-radius: 150px;
+    position: absolute;
+    opacity: 0.7;}
+
+.ball4{
+    animation: ball 5000ms infinite linear alternate;
+    animation-delay: 2000ms;
+    height:300px;
+    width:300px;
+    align-items: center;
+    z-index: 4;
+    border-radius: 150px;
+    position: absolute;
+    opacity: 0.7;
+}
+
+.ball5{
+    animation: ball 2500ms infinite linear alternate;
+    animation-delay: 5000ms;
+    height:300px;
+    width:300px;
+    align-items: center;
+    z-index: 5;
+    border-radius: 150px;
+    position: absolute;
+    opacity: 0.7;
+}
+
+
+
+
+
+
+
+
+
