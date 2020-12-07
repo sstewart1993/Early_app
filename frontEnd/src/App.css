@@ -13,6 +13,7 @@ h1 {
     display: flex;
     justify-content: space-around;
     padding: 0 30px;
+    min-height: 150px;
 }
 
 .nav-bar > ul {
