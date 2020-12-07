@@ -1,12 +1,6 @@
 import React, {useState, useEffect} from "react";
 import "./Animation.css"
-import forest from "../../assets/Forest.jpg"
-import ball from "../../assets/Ball.jpg"
-import ball1 from "../../assets/Ball1.jpg"
 import sky from "../../assets/sky.jpg"
-
-
-
 
 
 const MeditationDisplay = ({timer,audio}) => {
@@ -15,14 +9,8 @@ const MeditationDisplay = ({timer,audio}) => {
     //     audio.play();
     // },[])
 
-
-
-
-    
-
     return(
         <>
-            <audio src={audio} loop />
             <img className = "ball" src={sky} alt="ball" />
             <p className ="breath" id="in">Breath In</p>
             <p className ="breath" id="out">Breath Out</p>

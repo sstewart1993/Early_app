@@ -14,7 +14,7 @@ const NavBar = (props) => {
                     <a href="/diary">Diary</a>
                 </li>
                 <li className="nav-link">
-                    <a href="/meditation">Quick Meditation</a>
+                    <a href="/meditation/start">Quick Meditation</a>
                 </li>
             </ul>
         </header>
