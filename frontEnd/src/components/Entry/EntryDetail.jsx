@@ -9,20 +9,37 @@ const EntryDetail =  ({entry}) => {
         )
     }
 
-    const meditationStatus = () => {
-        if (!entry.meditation.completed) {
-            return (<p>You have completed {entry.mediation.length} minutes of mediation today</p>)
-        } return (
-            <p>Do you want to do some mediation today?</p>
-        )
+    let meditation = ""
+
+    if(entry.meditation.completed){
+        meditation = "Great job keeping up with meditating today! That's " + entry.meditation.length + " minutes of tranquility."
+    } else {
+       meditation = "Would you like to do some meditation today?"
+    }
+
+    let sleepQuality = ""
+
+    if(entry.sleep.sleepQuality  == "Restful") {
+        sleepQuality = "got a restful sleep."
+    } else if(entry.sleep.sleepQuality  == "WokeOnce" ) {
+        sleepQuality = "woke once during the night."
+    } else if (entry.sleep.sleepQuality == "WokeTwice") {
+        sleepQuality = "woke twice during the night."
+    } else if (entry.sleep.sleepQuality == "Restless") {
+        sleepQuality = "had a pretty restless night."
+    } else if (entry.sleep.sleepQuality == "Bad") {
+        sleepQuality = "had a particularly bad night."
+    } else if (entry.sleep.sleepQuality == "No") {
+        sleepQuality = "did not sleep a wink!"
     }
     
     return (
         <>
         <div className = "entryDetail">
-        <h1>{entry.prompt}</h1>
-        <p>I have some details about that time when you felt:  </p>
-        {meditationStatus}
+        <h1>Your Diary on {entry.date}</h1>
+        <h4>You recorded: {entry.prompt}</h4>
+        <p>On this day you got {entry.sleep.hours} hours of sleep and you {sleepQuality}</p>
+        <p>{meditation}</p>
         </div>
         </>
     )
