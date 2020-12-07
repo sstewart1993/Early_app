@@ -19,10 +19,11 @@ const EntryDetail =  ({entry}) => {
 
     let sleepQuality = ""
 
+
     if(entry.sleep.sleepQuality  == "Restful") {
         sleepQuality = "got a restful sleep."
     } else if(entry.sleep.sleepQuality  == "WokeOnce" ) {
-        sleepQuality = "woke once during the night."
+        sleepQuality = "woke once during the night." 
     } else if (entry.sleep.sleepQuality == "WokeTwice") {
         sleepQuality = "woke twice during the night."
     } else if (entry.sleep.sleepQuality == "Restless") {
@@ -35,12 +36,22 @@ const EntryDetail =  ({entry}) => {
     
     return (
         <>
-        <div className = "entryDetail">
         <h1>Your Diary on {entry.date}</h1>
-        <h4>You recorded: {entry.prompt}</h4>
-        <p>On this day you got {entry.sleep.hours} hours of sleep and you {sleepQuality}</p>
+
+        <form onSubmit="" className = "entryDetail">
+            <label for="prompt">Prompt: </label>
+            <input type="text" name="prompt" placeholder={entry.prompt}></input>
+           
+           <h2>Sleep Info</h2>
+           <label for="dream">Dream Diary:</label>
+           <input type="text" name="dream-diary" placeholder={entry.sleep.dream}></input>
+           <label for="sleephours">Hours of Sleep: </label>
+           <input type="number" name="sleep-hours" placeholder={entry.sleep.hours}></input>
+
+        
+        <p>On this day you got {entry.sleep.hours} hours of sleep and you {sleepQuality}. </p>
         <p>{meditation}</p>
-        </div>
+        </form>
         </>
     )
 }
