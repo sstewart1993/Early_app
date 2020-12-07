@@ -9,7 +9,7 @@ const DiaryDisplay = ({diary, handleEntryClick}) => {
 
   const events = []
 
-  if (diary[0] != undefined){
+  if (diary[0] !== undefined){
     diary[0].entries.forEach(entry => {
       let newCell = {title: entry.prompt.toString(),
         date: entry.date.toString(),
