@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -20,10 +22,22 @@ public class EntryController {
         return new ResponseEntity<>(entryRepository.findAll(), HttpStatus.OK);
     }
 
+    @GetMapping(value="/entries/date/{date}")
+    public ResponseEntity<List<Entry>> getEntryByDate(@PathVariable String date){
+        String[] dateSplit = date.split("-");
+        int year = Integer.parseInt(dateSplit[0]);
+        int month = Integer.parseInt(dateSplit[1]);
+        int day = Integer.parseInt(dateSplit[2]);
+        LocalDate localDate = LocalDate.of(year,month,day);
+        return new ResponseEntity<>(entryRepository.findAllByDate(localDate),HttpStatus.OK);
+    }
+
     @GetMapping(value = "/entries/{id}")
     public ResponseEntity getEntry(@PathVariable Long id){
         return new ResponseEntity<>(entryRepository.findById(id), HttpStatus.OK);
     }
+
+
 
     @PostMapping(value = "/entries")
     public ResponseEntity<Entry> postEntry(@RequestBody Entry entry){

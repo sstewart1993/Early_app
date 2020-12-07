@@ -17,7 +17,7 @@ public class Entry {
     private Long id;
 
     @Column(name="date")
-    private LocalDate date;
+    private LocalDate date = LocalDate.now();
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="sleep_id", referencedColumnName = "id")
