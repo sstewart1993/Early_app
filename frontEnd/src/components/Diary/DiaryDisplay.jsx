@@ -1,6 +1,5 @@
 import React from 'react'
 import FullCalendar from '@fullcalendar/react'
-import {Calendar} from '@fullcalendar/core'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import EntryDetail from "../Entry/EntryDetail"
