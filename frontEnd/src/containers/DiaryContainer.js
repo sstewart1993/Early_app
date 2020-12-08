@@ -62,13 +62,13 @@ const DiaryContainer = () => {
                 <Route exact path="/diary/:id" render={ (props) => {
                     const id = props.match.params.id;
                     const entry = findEntryById(id);
-                    return <EntryDetail entry={entry} onUpdate={handleUpdate}/>
+                    return <EntryDetail entry={entry}  onUpdate={handleUpdate}/>
                  }} />
 
                 {/* default view */}
                 <Route render={ () => {
                     // return <CalendarView />
-                    return <DiaryDisplay diary={diary} handleEntryClick={handleEntryClick}/>
+                    return <DiaryDisplay diary={diary}  handleEntryClick={handleEntryClick}/>
                 }} />
 
             </Switch>
