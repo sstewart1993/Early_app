@@ -7,7 +7,6 @@ const MeditationSetup = () => {
     return(
 
         <>
-        <p>MeditationSetup</p>
         <MeditationDisplay />
 
 

@@ -28,7 +28,7 @@ public class DataLoader implements ApplicationRunner {
         Diary testDiary = new Diary();
         diaryRepository.save(testDiary);
 
-        LocalDate today = LocalDate.now();
+        LocalDate today = LocalDate.of(2020, 12, 03);
         LocalDate yesterday = LocalDate.of(2020, 12, 04);
         SleepQuality wokeOnce = SleepQuality.WokeOnce;
         SleepQuality poor = SleepQuality.Bad;

@@ -38,7 +38,6 @@ public class EntryController {
     }
 
 
-
     @PostMapping(value = "/entries")
     public ResponseEntity<Entry> postEntry(@RequestBody Entry entry){
         entryRepository.save(entry);
