@@ -5,14 +5,17 @@ import MeditationSetup from "../components/Meditation/MeditationSetup";
 import MeditationDisplay from "../components/Meditation/MeditationDisplay";
 import sparrows from "../assets/sparrows.wav";
 import nature from "../assets/nature.wav";
+import river from "../assets/river.wav";
 
 
 const MeditationContainer = () => {
 
     const[timer,setTimer] = useState(0);
 
-    const audioSparrows = new Audio(nature)
-    let sounds = [audioSparrows];
+    const audioSparrows = new Audio(sparrows)
+    const audioNature = new Audio(nature)
+    const audioRiver = new Audio(river)
+    let sounds = [audioSparrows, audioNature, audioRiver];
     const[audio,setAudio] = useState(sounds[0]);
     
 

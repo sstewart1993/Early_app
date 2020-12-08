@@ -5,12 +5,13 @@ import sky from "../../assets/sky.jpg"
 
 const MeditationDisplay = ({timer,audio}) => {
 
-    // useEffect( () => {
-    //     audio.play();
-    // },[])
+    useEffect( () => {
+        audio.play();
+    }, [])
 
     return(
         <>
+
             <img className = "ball" src={sky} alt="ball" />
             <p className ="breath" id="in">Breath In</p>
             <p className ="breath" id="out">Breath Out</p>
