@@ -3,11 +3,9 @@ import "./Animation.css"
 import sky from "../../assets/sky.jpg"
 
 
-const MeditationDisplay = ({timer,audio}) => {
+const MeditationDisplay = () => {
 
-    useEffect( () => {
-        audio.play();
-    }, [])
+    
 
     return(
         <>
