@@ -72,47 +72,49 @@ const EntryDetail =  ({entry, sleep, mood, onUpdate}) => {
     const handleSubmit = function(event){
         event.preventDefault();
         let stateEntryCopy = {...stateEntry}
-        stateEntryCopy["mood"] = {...mood}
-        stateEntryCopy["sleep"] = {...sleep}
+        stateEntryCopy["mood"] = {...stateMood}
+        stateEntryCopy["sleep"] = {...stateSleep}
+
         onUpdate(stateEntryCopy)
     }
 
     const handleMoodChange = function(event){
         let propertyName = event.target.name;
-        let moodCopy = {...mood};
+        let moodCopy = {...stateMood};
         moodCopy[propertyName] = event.target.value;
         setStateMood(moodCopy);
-
-        setStateEntry(prevStateEntry => ({
-            ...prevStateEntry, mood: {...prevStateEntry.mood, mood}
-        }))
+       
     }
     
     const handleSleepChange = function(event){
+        // debugger
         let propertyName = event.target.name;
-        let sleepCopy = {...sleep};
-        sleepCopy[propertyName] = event.target.value;
+        let sleepCopy = {...entry.sleep};
+        console.log(typeof event.target.value )
+        sleepCopy[propertyName] = event.target.name === "hours" ? parseInt(event.target.value) : event.target.value;
         setStateSleep(sleepCopy);
 
-        setStateEntry(stateEntry => ({
-            ...stateEntry, sleep: {...stateEntry.sleep, sleep}
-        }))
     }
 
     const handleReasonChange = function(event){
         let fieldName = event.target.name;
         let value = event.target.value;
+        let reasonCopy = {...entry.mood}
+        if(!reasonCopy[fieldName].includes(value)){
+        reasonCopy[fieldName].push(value);
+        setStateMood(reasonCopy)
+        } else { 
+        let index = reasonCopy[fieldName].indexOf(value);
+        reasonCopy[fieldName].splice(index, 1)
+        setStateMood(reasonCopy)}
         
         
         
-        // setMood(moodCopy);
+        
     }
 
     const mindReasonSelected = stateMood.mindReason;
     const bodyReasonSelected = stateMood.bodyReason;
-
-    
-    
     
     return (
         <>
@@ -125,9 +127,9 @@ const EntryDetail =  ({entry, sleep, mood, onUpdate}) => {
             <div className = "sleep-info">
                 <h2>Sleep Info</h2>
                     <label for="dream">Dream Diary:</label>
-                    <input type="text" name="dream" defaultValue={entry.sleep.dream} placeholder={entry.sleep.dream} onChange={handleSleepChange}></input>
+                    <input type="text" name="dream" defaultValue={entry.sleep.dream} placeholder={entry.sleep.dream} value={stateSleep.dream} onChange={handleSleepChange}></input>
                     <label for="sleephours">Hours of Sleep: </label>
-                    <input type="number" name="sleep-hours" defaultValue={entry.sleep.hours} placeholder={entry.sleep.hours} onChange={handleSleepChange}></input>
+                    <input type="number" name="hours" defaultValue={entry.sleep.hours} placeholder={entry.sleep.hours} onChange={handleSleepChange}></input>
                     <label>Sleep Quality:</label>
                     <select select name="sleepQuality" defaultValue={entry.sleep.sleepQuality} onChange={handleSleepChange}>
                         <option value="Restful">Very Restful</option>
@@ -141,83 +143,83 @@ const EntryDetail =  ({entry, sleep, mood, onUpdate}) => {
             <div className="mood-info">
                 <h2>Mood Info</h2>
                     <label>You rated your mind at:</label>
-                    <input type="range" min="1" max="10" onChange={handleMoodChange} value={entry.mood.mindScore} name="mindScore"/>
+                    <input type="range" min="1" max="10" onChange={handleMoodChange} defaultValue={entry.mood.mindScore} name="mindScore"/>
             
             <h5><label className>You checked the following contributing reasons for rating your mind this way: </label></h5>
 
                 <div className="reason-checkboxes">
-                        <input type="checkbox" name="mindReason" id="mind-work" value="Work" onChange={handleReasonChange} />
+                        <input type="checkbox" name="mindReason" id="mind-work" value="Work" onChange={handleReasonChange} checked={stateMood.mindReason.includes("Work")} />
                         <label for="mind-work">work</label>
 
-                        <input type="checkbox" name="mindReason" id="mind-family" value="Family" onChange={handleReasonChange} />
+                        <input type="checkbox" name="mindReason" id="mind-family" value="Family" onChange={handleReasonChange} checked={stateMood.mindReason.includes("Family")}/>
                         <label for="mind-family">family</label>
 
-                        <input type="checkbox" name="mindReason" id="mind-relationship" value="Relationship" onChange={handleReasonChange} />
+                        <input type="checkbox" name="mindReason" id="mind-relationship" value="Relationship" onChange={handleReasonChange} checked={stateMood.mindReason.includes("Relationship")}/>
                         <label for="mind-relationship">relationships</label>
 
-                        <input type="checkbox" name="mindReason" id="mind-education" value="Education" onChange={handleReasonChange} />
+                        <input type="checkbox" name="mindReason" id="mind-education" value="Education" onChange={handleReasonChange} checked={stateMood.mindReason.includes("Education")}/>
                         <label for="mind-education">education</label>
 
-                        <input type="checkbox" name="mindReason" id="mind-food" value="Food" onChange={handleReasonChange} />
+                        <input type="checkbox" name="mindReason" id="mind-food" value="Food" onChange={handleReasonChange} checked={stateMood.mindReason.includes("Food")}/>
                         <label for="mind-food">food</label>
 
-                        <input type="checkbox" name="mindReason" id="mind-travel" value="Travelling" onChange={handleReasonChange}  />
+                        <input type="checkbox" name="mindReason" id="mind-travel" value="Travelling" onChange={handleReasonChange} checked={stateMood.mindReason.includes("Travelling")} />
                         <label for="mind-travel">travel</label>
 
-                        <input type="checkbox" name="mindReason" id="mind-friends" value="Friends" onChange={handleReasonChange} />
+                        <input type="checkbox" name="mindReason" id="mind-friends" value="Friends" onChange={handleReasonChange} checked={stateMood.mindReason.includes("Friends")}/>
                         <label for="mind-friends">friends</label>
 
-                        <input type="checkbox" name="mindReason" id="mind-exercise" value="Exercise" onChange={handleReasonChange} />
+                        <input type="checkbox" name="mindReason" id="mind-exercise" value="Exercise" onChange={handleReasonChange} checked={stateMood.mindReason.includes("Excercise")} />
                         <label for="mind-exercise">exercise</label>
 
-                        <input type="checkbox" name="mindReason" id="mind-body" value="Body" onChange={handleReasonChange}  />
+                        <input type="checkbox" name="mindReason" id="mind-body" value="Body" onChange={handleReasonChange} checked={stateMood.mindReason.includes("Body")} />
                         <label for="mind-body">body</label>
 
-                        <input type="checkbox" name="mindReason" id="mind-covid" value="Covid" onChange={handleReasonChange} />
+                        <input type="checkbox" name="mindReason" id="mind-covid" value="Covid" onChange={handleReasonChange} checked={stateMood.mindReason.includes("Covid")}/>
                         <label for="mind-covid">covid</label>
 
-                        <input type="checkbox" name="mindReason" id="mind-dont-know" value="DontKnow" onChange={handleReasonChange} />
+                        <input type="checkbox" name="mindReason" id="mind-dont-know" value="DontKnow" onChange={handleReasonChange} checked={stateMood.mindReason.includes("DontKnow")}/>
                         <label for="mind-dont-know">I don't know</label>
 
                     </div>
 
                 <label>You rated your body at:</label>
-                {/* <input type="range" min="1" max="10" onChange={handleMoodChange} value={entry.mood.bodyScore} name="bodyScore" defaultValue={mood.bodyscore}/> */}
+                <input type="range" min="1" max="10" onChange={handleMoodChange} name="bodyScore" defaultValue={entry.mood.bodyScore}/>
             
-            <h5><label className>You checked the following contributing reasons for rating your body this way: </label></h5>
+                <h5><label className>You checked the following contributing reasons for rating your body this way: </label></h5>
 
                 <div className="reason-checkboxes">
-                    <input type="checkbox" name="bodyReason" id="body-work" value="Work" onChange={handleReasonChange} />
+                    <input type="checkbox" name="bodyReason" id="body-work" value="Work" onChange={handleReasonChange} checked={stateMood.bodyReason.includes("Work")}/>
                     <label for="body-work">work</label>
 
-                    <input type="checkbox" name="bodyReason" id="body-family" value="Family" onChange={handleReasonChange} />
+                    <input type="checkbox" name="bodyReason" id="body-family" value="Family" onChange={handleReasonChange} checked={stateMood.bodyReason.includes("Family")}/>
                     <label for="body-family">family</label>
 
-                    <input type="checkbox" name="bodyReason" id="body-relationship" value="Relationship" onChange={handleReasonChange} />
+                    <input type="checkbox" name="bodyReason" id="body-relationship" value="Relationship" onChange={handleReasonChange} checked={stateMood.bodyReason.includes("Relationship")}/>
                     <label for="body-relationship">relationships</label>
 
-                    <input type="checkbox" name="bodyReason" id="body-education" value="Education" onChange={handleReasonChange} />
+                    <input type="checkbox" name="bodyReason" id="body-education" value="Education" onChange={handleReasonChange} checked={stateMood.bodyReason.includes("Education")}/>
                     <label for="body-education">education</label>
 
-                    <input type="checkbox" name="bodyReason" id="body-food" value="Food" onChange={handleReasonChange}/>
+                    <input type="checkbox" name="bodyReason" id="body-food" value="Food" onChange={handleReasonChange} checked={stateMood.bodyReason.includes("Food")} />
                     <label for="body-food">food</label>
 
-                    <input type="checkbox" name="bodyReason" id="body-travel" value="Travelling" onChange={handleReasonChange} />
+                    <input type="checkbox" name="bodyReason" id="body-travel" value="Travelling" onChange={handleReasonChange} checked={stateMood.bodyReason.includes("Travelling")}/>
                     <label for="body-travel">travel</label>
 
-                    <input type="checkbox" name="bodyReason" id="body-friends" value="Friends" onChange={handleReasonChange} />
+                    <input type="checkbox" name="bodyReason" id="body-friends" value="Friends" onChange={handleReasonChange} checked={stateMood.bodyReason.includes("Friends")}/>
                     <label for="body-friends">friends</label>
 
-                    <input type="checkbox" name="bodyReason" id="body-exercise" value="Exercise" onChange={handleReasonChange}/>
+                    <input type="checkbox" name="bodyReason" id="body-exercise" value="Exercise" onChange={handleReasonChange} checked={stateMood.bodyReason.includes("Excercise")} />
                     <label for="body-exercise" >exercise</label>
 
-                    <input type="checkbox" name="bodyReason" id="body-body" value="Body" onChange={handleReasonChange} />
+                    <input type="checkbox" name="bodyReason" id="body-body" value="Body" onChange={handleReasonChange} checked={stateMood.bodyReason.includes("Body")}/>
                     <label for="body-body">body</label>
 
-                    <input type="checkbox" name="bodyReason" id="body-covid" value="Covid" onChange={handleReasonChange}/>
+                    <input type="checkbox" name="bodyReason" id="body-covid" value="Covid" onChange={handleReasonChange} checked={stateMood.bodyReason.includes("Covid")}/>
                     <label for="body-covid">covid</label>
 
-                    <input type="checkbox" name="bodyReason" id="body-dont-know" value="DontKnow" onChange={handleReasonChange}/>
+                    <input type="checkbox" name="bodyReason" id="body-dont-know" value="DontKnow" onChange={handleReasonChange} checked={stateMood.bodyReason.includes("DontKnow")}/>
                     <label for="body-dont-know">I don't know</label>
 
                     </div>
