@@ -114,6 +114,18 @@ const EntryDetail =  ({entry, sleep, mood, onUpdate}) => {
         setStateMood(moodCopy);
     }
 
+    const handleMeditationChange = function(event){
+        let minsMeditated = event.target.value;
+        let entryCopy = {...stateEntry};
+        if(minsMeditated > 0){
+            entryCopy.meditation.completed = true;
+        } else {
+            entryCopy.meditation.completed = false;
+        }
+        entryCopy.meditation.length = minsMeditated;
+        setStateEntry(entryCopy);
+    }
+
     const mindReasonSelected = stateMood.mindReason;
     const bodyReasonSelected = stateMood.bodyReason;
 
@@ -149,7 +161,7 @@ const EntryDetail =  ({entry, sleep, mood, onUpdate}) => {
                     <label>You rated your mind at: {stateEntry.mood.mindScore}/10</label>
                     <input type="range" min="1" max="10" onChange={handleMoodChange} value={stateEntry.mood.mindScore} name="mindScore"/>
             
-            <h5><label className>You checked the following contributing reasons for rating your mind this way: </label></h5>
+            <h5><label>You checked the following contributing reasons for rating your mind this way: </label></h5>
 
                 <div className="reason-checkboxes">
                     {mindReasonSelected.includes("Work") ? <input type="checkbox" name="mindReason" id="mind-work" value="Work" onChange={handleReasonChange} checked/>:
@@ -219,7 +231,7 @@ const EntryDetail =  ({entry, sleep, mood, onUpdate}) => {
                 <label>You rated your body at: {stateEntry.mood.bodyScore}/10</label>
                 <input type="range" min="1" max="10" onChange={handleMoodChange} value={stateEntry.mood.bodyScore} name="bodyScore"/>
             
-            <h5><label className>You checked the following contributing reasons for rating your body this way: </label></h5>
+            <h5><label>You checked the following contributing reasons for rating your body this way: </label></h5>
 
                 <div className="reason-checkboxes">
 
@@ -293,7 +305,7 @@ const EntryDetail =  ({entry, sleep, mood, onUpdate}) => {
             <h2>Meditation Info </h2>
 
             <label>You meditated for </label>
-            <input type="number" defaultValue={entry.meditation.length} onchange={handleChange}></input>
+            <input type="number" defaultValue={entry.meditation.length} onChange={handleMeditationChange}></input>
             <label>minutes! </label>
                 
                 </div>
