@@ -42,7 +42,11 @@ const DiaryContainer = () => {
 
     }
 
-
+    const handleUpdate = function(entry){
+        const request = new Request();
+        request.patch("/entries/" + entry.id, entry)
+        .then(() => {window.location='/diary'})
+      }
 
     return(
         // <p>I am the Diary container. I AM THE MASTER!</p>
@@ -58,7 +62,7 @@ const DiaryContainer = () => {
                 <Route exact path="/diary/:id" render={ (props) => {
                     const id = props.match.params.id;
                     const entry = findEntryById(id);
-                    return <EntryDetail entry={entry}/>
+                    return <EntryDetail entry={entry} onUpdate={handleUpdate}/>
                  }} />
 
                 {/* default view */}

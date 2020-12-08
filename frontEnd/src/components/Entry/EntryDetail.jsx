@@ -1,41 +1,47 @@
 import { useEffect, useState } from "react";
 import React from "react";
+import "../Entry/EntryDetail.css";
 
+const EntryDetail =  ({entry, onUpdate}) => {
 
-const EntryDetail =  ({entry}) => {
-
-    const [stateEntry, setStateEntry] = useState({
-        
-            id: null,
-            date: "",
-            sleep: {
-            id: null,
-            hours: null,
-            sleepQuality: "",
-            dream: ""
-            },
-            mood: {
-            id: null,
-            mindScore: null,
-            bodyScore: null,
-            mindReason: [ ],
-            bodyReason: []
-            },
-            prompt: "",
+    const[stateEntry, setStateEntry] = useState(
+        {
+            // date: null,
+            sleep: {},
+            mood: {},
+            prompt:"",
+            diary: {id:1},
             meditation: {
-            id: null,
-            length: null,
-            completed: false
+                completed: false,
+                length: 0
             }
-            
-    })
-
-    useEffect(() => {
-        if(entry){
-            let currentEntry = {...entry}
-            setStateEntry(currentEntry)
         }
-    }, [entry])
+    )
+
+    const[sleep,setSleep] = useState(
+       {
+        hours:0,
+        sleepQuality:"",
+        dream:"" 
+       } 
+    )
+
+    const[mood,setMood] = useState(
+        {
+            mindScore:0,
+            bodyScore:0,
+            mindReason:[],
+            bodyReason:[]
+        }
+    )
+
+    useEffect( () => {
+        let entryCopy = {...entry}
+        entryCopy["mood"] = {...mood}
+        entryCopy["sleep"] = {...sleep}
+        setStateEntry(entryCopy);
+    },[sleep,mood])
+
 
     if(!entry){
         return (
@@ -49,46 +55,65 @@ const EntryDetail =  ({entry}) => {
         copiedEntry[propertyName] = event.target.value;
         setStateEntry(copiedEntry)}
 
-    let meditation = ""
-
-    if(entry.meditation.completed){
-        meditation = "Great job keeping up with meditating today! That's " + entry.meditation.length + " minutes of tranquility."
-    } else {
-       meditation = "Would you like to do some meditation today?"
+    const handleSubmit = function(event){
+        event.preventDefault();
+        let stateEntryCopy = {...stateEntry}
+        stateEntryCopy["mood"] = {...mood}
+        stateEntryCopy["sleep"] = {...sleep}
+        onUpdate(stateEntryCopy)
     }
 
-    let sleepQuality = ""
-
-
-    if(entry.sleep.sleepQuality  === "Restful") {
-        sleepQuality = "got a restful sleep."
-    } else if(entry.sleep.sleepQuality  === "WokeOnce" ) {
-        sleepQuality = "woke once during the night." 
-    } else if (entry.sleep.sleepQuality === "WokeTwice") {
-        sleepQuality = "woke twice during the night."
-    } else if (entry.sleep.sleepQuality === "Restless") {
-        sleepQuality = "had a pretty restless night."
-    } else if (entry.sleep.sleepQuality === "Bad") {
-        sleepQuality = "had a particularly bad night."
-    } else if (entry.sleep.sleepQuality === "No") {
-        sleepQuality = "did not sleep a wink!"
+    const handleMoodChange = function(event){
+        let propertyName = event.target.name;
+        let moodCopy = {...mood};
+        moodCopy[propertyName] = event.target.value;
+        setMood(moodCopy);
+        setStateEntry(prevStateEntry => ({
+            ...prevStateEntry, mood: {...prevStateEntry.mood, mood}
+        }))
     }
+    
+    const handleSleepChange = function(event){
+        let propertyName = event.target.name;
+        let sleepCopy = {...sleep};
+        sleepCopy[propertyName] = event.target.value;
+        setSleep(sleepCopy);
+
+        setStateEntry(prevStateEntry => ({
+            ...prevStateEntry, sleep: {...prevStateEntry.sleep, sleep}
+        }))
+    }
+
+    const handleReasonChange = function(event){
+        let fieldName = event.target.name;
+        let value = event.target.value;
+        let moodCopy = {...mood};
+        
+        
+        setMood(moodCopy);
+    }
+
+    const mindReasonSelected = entry.mood.mindReason;
+    const bodyReasonSelected = entry.mood.bodyReason;
+
+    
+    
     
     return (
         <>
         <h1>Your Diary on {entry.date}</h1>
 
-        <form onSubmit="" className = "entryDetail">
+        <form onSubmit={handleSubmit} className = "entryDetail">
             <label for="prompt">Prompt: </label>
-            <input type="text" name="prompt" value={entry.prompt} placeholder={entry.prompt} onChange={handleChange}></input>
-           
+            <input type="text" name="prompt" defaultValue={entry.prompt} placeholder={entry.prompt} onChange={handleChange} className="Prompt"></input>
+            <div className = "sleep-info">
             <h2>Sleep Info</h2>
             <label for="dream">Dream Diary:</label>
-            <input type="text" name="dream-diary" value={entry.sleep.dream} placeholder={entry.sleep.dream} onChange={handleChange}></input>
+            <input type="text" name="dream" defaultValue={entry.sleep.dream} placeholder={entry.sleep.dream} onChange={handleSleepChange}></input>
             <label for="sleephours">Hours of Sleep: </label>
-            <input type="number" name="sleep-hours" value={entry.sleep.hours} placeholder={entry.sleep.hours} onChange={handleChange}></input>
+            <input type="number" name="sleep-hours" defaultValue={entry.sleep.hours} placeholder={entry.sleep.hours} onChange={handleSleepChange}></input>
             <label>Sleep Quality:</label>
-            <select select name="sleepQuality" defaultValue={entry.sleep.sleepQuality} onChange={handleChange}>
+            <select select name="sleepQuality" defaultValue={entry.sleep.sleepQuality} onChange={handleSleepChange}>
                 <option value="Restful">Very Restful</option>
                 <option value="WokeOnce">I woke up once</option>
                 <option value="WokeTwice">I woke up twice</option>
@@ -96,14 +121,101 @@ const EntryDetail =  ({entry}) => {
                 <option value="Bad">I had a bad night's sleep</option>
                 <option value="No">I didn't sleep at all</option>
             </select>
-
+            </div>
+            <div className="mood-info">
             <h2>Mood Info</h2>
-            <label></label>
-            <input></input>
+            <label>You rated your mind at:</label>
+            <input type="range" min="1" max="10" onChange={handleMoodChange} value={mood.mindScore} name="mindScore"/>
+            
+            <h5><label className>You checked the following contributing reasons for rating your mind this way: </label></h5>
+
+            <div className="reason-checkboxes">
+                    <input type="checkbox" name="mindReason" id="mind-work" value="Work" onChange={handleReasonChange} />
+                    <label for="mind-work">work</label>
+
+                    <input type="checkbox" name="mindReason" id="mind-family" value="Family" onChange={handleReasonChange} />
+                    <label for="mind-family">family</label>
+
+                    <input type="checkbox" name="mindReason" id="mind-relationship" value="Relationship" onChange={handleReasonChange} />
+                    <label for="mind-relationship">relationships</label>
+
+                    <input type="checkbox" name="mindReason" id="mind-education" value="Education" onChange={handleReasonChange} />
+                    <label for="mind-education">education</label>
+
+                    <input type="checkbox" name="mindReason" id="mind-food" value="Food" onChange={handleReasonChange} />
+                    <label for="mind-food">food</label>
+
+                    <input type="checkbox" name="mindReason" id="mind-travel" value="Travelling" onChange={handleReasonChange}  />
+                    <label for="mind-travel">travel</label>
+
+                    <input type="checkbox" name="mindReason" id="mind-friends" value="Friends" onChange={handleReasonChange} checked={mindReasonSelected.includes("Pie")} />
+                    <label for="mind-friends">friends</label>
+
+                    <input type="checkbox" name="mindReason" id="mind-exercise" value="Exercise" onChange={handleReasonChange} />
+                    <label for="mind-exercise">exercise</label>
+
+                    <input type="checkbox" name="mindReason" id="mind-body" value="Body" onChange={handleReasonChange}  />
+                    <label for="mind-body">body</label>
+
+                    <input type="checkbox" name="mindReason" id="mind-covid" value="Covid" onChange={handleReasonChange} />
+                    <label for="mind-covid">covid</label>
+
+                    <input type="checkbox" name="mindReason" id="mind-dont-know" value="DontKnow" onChange={handleReasonChange} />
+                    <label for="mind-dont-know">I don't know</label>
+
+                </div>
+
+                <label>You rated your body at:</label>
+            <input type="range" min="1" max="10" onChange={handleMoodChange} value={mood.bodyScore} name="bodyScore" defaultValue={mood.bodyscore}/>
+            
+            <h5><label className>You checked the following contributing reasons for rating your body this way: </label></h5>
+
+            <div className="reason-checkboxes">
+                    <input type="checkbox" name="bodyReason" id="body-work" value="Work" onChange={handleReasonChange} />
+                    <label for="body-work">work</label>
+
+                    <input type="checkbox" name="bodyReason" id="body-family" value="Family" onChange={handleReasonChange} />
+                    <label for="body-family">family</label>
+
+                    <input type="checkbox" name="bodyReason" id="body-relationship" value="Relationship" onChange={handleReasonChange} />
+                    <label for="body-relationship">relationships</label>
+
+                    <input type="checkbox" name="bodyReason" id="body-education" value="Education" onChange={handleReasonChange} />
+                    <label for="body-education">education</label>
+
+                    <input type="checkbox" name="bodyReason" id="body-food" value="Food" onChange={handleReasonChange}/>
+                    <label for="body-food">food</label>
+
+                    <input type="checkbox" name="bodyReason" id="body-travel" value="Travelling" onChange={handleReasonChange} />
+                    <label for="body-travel">travel</label>
+
+                    <input type="checkbox" name="bodyReason" id="body-friends" value="Friends" onChange={handleReasonChange} />
+                    <label for="body-friends">friends</label>
+
+                    <input type="checkbox" name="bodyReason" id="body-exercise" value="Exercise" onChange={handleReasonChange}/>
+                    <label for="body-exercise" >exercise</label>
+
+                    <input type="checkbox" name="bodyReason" id="body-body" value="Body" onChange={handleReasonChange} />
+                    <label for="body-body">body</label>
+
+                    <input type="checkbox" name="bodyReason" id="body-covid" value="Covid" onChange={handleReasonChange}/>
+                    <label for="body-covid">covid</label>
+
+                    <input type="checkbox" name="bodyReason" id="body-dont-know" value="DontKnow" onChange={handleReasonChange}/>
+                    <label for="body-dont-know">I don't know</label>
+
+                </div>
+                </div>
+                <div className ="meditation-info">
+            <h2>Meditation Info </h2>
+
+            <label>You meditated for </label>
+            <input type="number" defaultValue={entry.meditation.length} onchange={handleChange}></input>
+            <label>minutes! </label>
+                
+                </div>
 
             <button type="submit"> Submit </button>
-        <p>On this day you got {entry.sleep.hours} hours of sleep and you {sleepQuality}. </p>
-        <p>{meditation}</p>
         </form>
         </>
     )
