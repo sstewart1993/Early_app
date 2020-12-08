@@ -71,8 +71,14 @@ const EntryForm = ({onCreate}) => {
     const handleReasonChange = function(event){
         let fieldName = event.target.name;
         let value = event.target.value;
+        const check = event.target.checked;
         let moodCopy = {...mood};
-        moodCopy[fieldName].push(value);
+        if(check === true){
+            moodCopy[fieldName].push(value);
+        }else{
+            const index = moodCopy[fieldName].indexOf(value);
+            moodCopy[fieldName].splice(index,1);
+        }
         setMood(moodCopy);
     }
 
