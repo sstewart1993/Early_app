@@ -169,7 +169,7 @@ const EntryDetail =  ({entry, sleep, mood, onUpdate}) => {
                         <input type="checkbox" name="mindReason" id="mind-friends" value="Friends" onChange={handleReasonChange} checked={stateMood.mindReason.includes("Friends")}/>
                         <label for="mind-friends">friends</label>
 
-                        <input type="checkbox" name="mindReason" id="mind-exercise" value="Exercise" onChange={handleReasonChange} checked={stateMood.mindReason.includes("Excercise")} />
+                        <input type="checkbox" name="mindReason" id="mind-exercise" value="Exercise" onChange={handleReasonChange} checked={stateMood.mindReason.includes("Exercise")} />
                         <label for="mind-exercise">exercise</label>
 
                         <input type="checkbox" name="mindReason" id="mind-body" value="Body" onChange={handleReasonChange} checked={stateMood.mindReason.includes("Body")} />
