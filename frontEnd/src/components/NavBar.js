@@ -5,7 +5,7 @@ const NavBar = (props) => {
     return(
 
         <header className="nav-bar">
-            <h1>App Name</h1>
+            <a href="/"><h1> App Name </h1> </a>
             <ul className="nav-bar-links">
                 <li className="nav-link">
                     <a href="/entry">Daily Check-In</a>

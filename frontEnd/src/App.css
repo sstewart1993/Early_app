@@ -16,6 +16,11 @@ h1 {
     min-height: 150px;
 }
 
+.nav-bar > a {
+    text-decoration: none;
+    color: #F2ECF9;
+}
+
 .nav-bar>ul {
     display: flex;
 }
