@@ -72,7 +72,9 @@ const MainContainer = () => {
                 }} />
 
 
-                <Route path="/meditation" component={MeditationContainer} />
+                <Route path="/meditation" render={ () => 
+                {return <MeditationContainer todayState={todayState} />}} /> 
+
                 <Route render={ () => {
                     return(
                         <div>
