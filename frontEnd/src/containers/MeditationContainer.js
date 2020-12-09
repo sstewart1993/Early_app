@@ -4,6 +4,10 @@ import Request from "../helpers/request";
 import MeditationSetup from "../components/Meditation/MeditationSetup";
 import MeditationDisplay from "../components/Meditation/MeditationDisplay";
 import sparrows from "../assets/sparrows.wav";
+import nature from "../assets/nature.wav";
+import river from "../assets/river.wav";
+import synth from "../assets/synth.mp3";
+import water from "../assets/water.mp3";
 
 
 const MeditationContainer = () => {
@@ -11,8 +15,12 @@ const MeditationContainer = () => {
     const[timer,setTimer] = useState(0);
 
     const audioSparrows = new Audio(sparrows)
-    let sounds = [audioSparrows];
-    const[audio,setAudio] = useState(sounds[0]);
+    const audioNature = new Audio(nature)
+    const audioRiver = new Audio(river)
+    const audioSynth = new Audio(synth)
+    const audioWater = new Audio(water)
+    let sounds = [audioSparrows, audioNature, audioRiver, audioSynth, audioWater];
+    const[audio,setAudio] = useState(sounds[4]);
     
 
     return(
@@ -24,7 +32,7 @@ const MeditationContainer = () => {
             <Switch>
 
             <Route path="/meditation/start" render={ () => {
-                return <MeditationDisplay length={timer} audio={audio}/>
+                return <MeditationDisplay  audio={audio}/>
             }}/>
 
             <Route render={ () => {
