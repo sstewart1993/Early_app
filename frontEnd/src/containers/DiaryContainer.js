@@ -33,6 +33,14 @@ const DiaryContainer = () => {
         })
     }
 
+    const handleDelete = function(id){
+        window.alert("This entry will be permanently deleted! Are you sure?")
+        const request = new Request();
+        const url = "/entries/" + id
+        request.delete(url)
+        .then(() => window.location = "/diary")
+      }
+
     const handleEntryClick = function(info){
         let id = info.event._def.extendedProps.id;
         // const url = "/entries/" + id;
@@ -62,7 +70,7 @@ const DiaryContainer = () => {
                 <Route exact path="/diary/:id" render={ (props) => {
                     const id = props.match.params.id;
                     const entry = findEntryById(id);
-                    return <EntryDetail entry={entry}  onUpdate={handleUpdate}/>
+                    return <EntryDetail entry={entry}  onUpdate={handleUpdate} onDelete={handleDelete}/>
                  }} />
 
                 {/* default view */}
