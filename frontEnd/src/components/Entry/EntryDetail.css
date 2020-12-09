@@ -1,0 +1,24 @@
+.entryDetail {
+    padding: 10px
+}
+
+.sleep-info {
+    margin-top: 20px;
+}
+
+.mood-info {
+    margin-top: 20px;
+}
+
+.meditation-info {
+    margin-top: 20px;
+}
+
+input>prompt {
+    height: 30px;
+    width: 400px;
+}
+
+.mind-reason-label {
+    margin-block-start: 10px
+}
