@@ -11,7 +11,7 @@ const MeditationDisplay = ({timer,audio}) => {
 
     return(
         <>
-
+            <audio src ={audio} />
             <img className = "ball" src={sky} alt="ball" />
             <p className ="breath" id="in">Breath In</p>
             <p className ="breath" id="out">Breath Out</p>
