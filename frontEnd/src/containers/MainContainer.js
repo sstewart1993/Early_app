@@ -78,10 +78,16 @@ const MainContainer = () => {
                 }} />
 
 
+<<<<<<< HEAD
                 <Route path="/meditation" render={ () => {
                     return <MeditationContainer todayState = {todayState} />
                 }} />
                 
+=======
+                <Route path="/meditation" render={ () => 
+                {return <MeditationContainer todayState={todayState} />}} /> 
+
+>>>>>>> main
                 <Route render={ () => {
                     return(
                         <div>

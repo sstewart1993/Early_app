@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import React from "react";
 import "./EntryDetail.css";
 
-const EntryDetail =  ({entry, sleep, mood, onUpdate}) => {
+const EntryDetail =  ({entry, sleep, mood, onUpdate, onDelete}) => {
 
   
 
@@ -68,6 +68,12 @@ const EntryDetail =  ({entry, sleep, mood, onUpdate}) => {
         let copiedEntry = {...stateEntry}
         copiedEntry[propertyName] = event.target.value;
         setStateEntry(copiedEntry)}
+
+    const handleDelete = function(){
+        debugger;
+        let id = entry.id;
+        onDelete(id);
+    }
 
     const handleSubmit = function(event){
         event.preventDefault();
@@ -136,6 +142,10 @@ const EntryDetail =  ({entry, sleep, mood, onUpdate}) => {
         <div className = "entry-detail">
         <h1>Your Diary on {entry.date}</h1>
 
+<<<<<<< HEAD
+=======
+        <button onClick={handleDelete}>Delete</button>
+>>>>>>> main
         <form onSubmit={handleSubmit}>
             <label for="prompt">Prompt: </label>
             <input type="text" name="prompt" defaultValue={entry.prompt} placeholder={entry.prompt} onChange={handleChange} className="prompt"></input>

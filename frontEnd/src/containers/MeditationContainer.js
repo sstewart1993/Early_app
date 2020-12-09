@@ -3,6 +3,10 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Request from "../helpers/request";
 import MeditationDisplay from "../components/Meditation/MeditationDisplay";
 import sparrows from "../assets/sparrows.wav";
+import nature from "../assets/nature.wav";
+import river from "../assets/river.wav";
+import synth from "../assets/synth.mp3";
+import water from "../assets/water.mp3";
 
 
 const MeditationContainer = ({todayState}) => {
@@ -69,6 +73,12 @@ const MeditationContainer = ({todayState}) => {
 
         handleUpdate(stateCopy);
     }
+    const audioNature = new Audio(nature)
+    const audioRiver = new Audio(river)
+    const audioSynth = new Audio(synth)
+    const audioWater = new Audio(water)
+    let sounds = [audioSparrows, audioNature, audioRiver, audioSynth, audioWater];
+    const[audio,setAudio] = useState(sounds[4]);
     
 
     return(
