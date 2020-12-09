@@ -3,15 +3,14 @@ import "./Animation.css"
 import sky from "../../assets/sky.jpg"
 
 
-<<<<<<< HEAD
 
 
 
 const MeditationDisplay = ({audio,endMeditation}) => {
 
-    // useEffect( () => {
-    //     audio.play();
-    // },[])
+    useEffect( () => {
+        audio.play();
+    },[])
 
 
     const handleEndMeditation = function(event){
@@ -26,17 +25,6 @@ const MeditationDisplay = ({audio,endMeditation}) => {
 
         <button onClick={handleEndMeditation} id="back-button">back</button>
             <audio src={audio} loop />
-=======
-const MeditationDisplay = ({timer,audio}) => {
-
-    useEffect( () => {
-        audio.play();
-    }, [])
-
-    return(
-        <>
-            <audio src ={audio} />
->>>>>>> main
             <img className = "ball" src={sky} alt="ball" />
             <p className ="breath" id="in">Breath In</p>
             <p className ="breath" id="out">Breath Out</p>

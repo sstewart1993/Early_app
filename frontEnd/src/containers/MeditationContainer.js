@@ -15,9 +15,9 @@ const MeditationContainer = ({todayState}) => {
 
     const[incomingState,setIncomingState] = useState([]);
 
-    const audioSparrows = new Audio(sparrows)
-    let sounds = [audioSparrows];
-    const[audio,setAudio] = useState(sounds[0]);
+    const audioSparrows = new Audio(sparrows);
+    // let sounds = [audioSparrows];
+    // const[audio,setAudio] = useState(sounds[0]);
 
     useEffect( () => {
         if(todayState === 0){

@@ -142,10 +142,7 @@ const EntryDetail =  ({entry, sleep, mood, onUpdate, onDelete}) => {
         <div className = "entry-detail">
         <h1>Your Diary on {entry.date}</h1>
 
-<<<<<<< HEAD
-=======
         <button onClick={handleDelete}>Delete</button>
->>>>>>> main
         <form onSubmit={handleSubmit}>
             <label for="prompt">Prompt: </label>
             <input type="text" name="prompt" defaultValue={entry.prompt} placeholder={entry.prompt} onChange={handleChange} className="prompt"></input>
