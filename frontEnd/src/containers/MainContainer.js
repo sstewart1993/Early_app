@@ -9,7 +9,7 @@ import Request from "../helpers/request";
 
 const MainContainer = () => {
 
-    const[todayState, setTodayState] = useState([]);
+    const[todayState, setTodayState] = useState(0);
 
     const[showHide, setShowHide] = useState(
         {
@@ -26,7 +26,8 @@ const MainContainer = () => {
 
         Promise.all([todayPromise])
         .then((data) => {
-            setTodayState(data[0][0]);
+            if(data[0][0]){
+            setTodayState(data[0][0]);}
         })
         .catch()
     }
@@ -44,7 +45,7 @@ const MainContainer = () => {
 
     useEffect(function viewSwitch(){
 
-        if(todayState) {
+        if(todayState !== 0) {
             let showHideCopy = {...showHide}
             showHideCopy['showMakeEntry'] = false;
             showHideCopy['showDailyStats'] = true;
@@ -77,7 +78,10 @@ const MainContainer = () => {
                 }} />
 
 
-                <Route path="/meditation" component={MeditationContainer} />
+                <Route path="/meditation" render={ () => {
+                    return <MeditationContainer todayState = {todayState} />
+                }} />
+                
                 <Route render={ () => {
                     return(
                         <div>

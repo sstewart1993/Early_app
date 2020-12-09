@@ -9,19 +9,24 @@ import sky from "../../assets/sky.jpg"
 
 
 
-const MeditationDisplay = ({timer,audio}) => {
+const MeditationDisplay = ({audio,endMeditation}) => {
 
     // useEffect( () => {
     //     audio.play();
     // },[])
 
 
-
+    const handleEndMeditation = function(event){
+        event.preventDefault();
+        endMeditation();
+    }
 
     
 
     return(
         <>
+
+        <button onClick={handleEndMeditation} id="back-button">back</button>
             <audio src={audio} loop />
             <img className = "ball" src={sky} alt="ball" />
             <p className ="breath" id="in">Breath In</p>
