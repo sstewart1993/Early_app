@@ -29,10 +29,13 @@ const DiaryDisplay = ({diary, handleEntryClick}) => {
   
       
     
-  return(  <FullCalendar className ="Full-Calendar"
+  return(  
+  <div className="Full-Calendar">
+  <FullCalendar 
     plugins={[ dayGridPlugin, interactionPlugin ]}
     initialView="dayGridMonth" 
-    events={events} eventClick={handleEventClick} eventBackgroundColor='#CDD3CE'eventTextColor='#C34B4F' eventColor='#D67E80' height='auto' /> 
+    events={events} eventClick={handleEventClick} eventBackgroundColor='#CDD3CE'eventTextColor='#C34B4F' eventColor='#D67E80' height='auto' />
+    </div> 
   )
 
 }

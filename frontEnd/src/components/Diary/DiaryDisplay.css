@@ -1,3 +1,9 @@
+.Full-Calendar {
+    height: 100;
+    overflow: auto;
+    margin: 5px 0;
+}
+
 .fc .fc-button-primary {
     margin-left: 10px;
     background-color: #CDD3CE;

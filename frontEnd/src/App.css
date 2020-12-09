@@ -19,6 +19,7 @@ h1 {
 .nav-bar > a {
     text-decoration: none;
     color: #F2ECF9;
+    align-self: center;
 }
 
 .nav-bar>ul {
