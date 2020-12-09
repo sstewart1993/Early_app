@@ -26,7 +26,7 @@ const MainContainer = () => {
 
         Promise.all([todayPromise])
         .then((data) => {
-            setTodayState(data[0]);
+            setTodayState(data[0][0]);
         })
         .catch()
     }
@@ -44,7 +44,7 @@ const MainContainer = () => {
 
     useEffect(function viewSwitch(){
 
-        if(todayState.length > 0) {
+        if(todayState) {
             let showHideCopy = {...showHide}
             showHideCopy['showMakeEntry'] = false;
             showHideCopy['showDailyStats'] = true;
@@ -56,6 +56,11 @@ const MainContainer = () => {
             setShowHide(showHideCopy);
         }
     },[todayState])
+
+    const handleStartMeditation = function(event){
+        event.preventDefault();
+        window.location="/meditation";
+    }
 
     return(
 
@@ -83,8 +88,7 @@ const MainContainer = () => {
 
                         {showHide.showDailyStats ? 
                             <div>
-                            <h3>Here are your daily stats: </h3>
-                            <p>blah blah</p>
+                            <button onClick={handleStartMeditation}>Would you like to meditate?</button>
                             </div>
                             : null }
                         </div>
